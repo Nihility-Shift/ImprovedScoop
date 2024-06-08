@@ -9,7 +9,7 @@ namespace ImprovedScoop
     {
         public const string PLUGIN_GUID = "improvedscoop";
         public const string PLUGIN_NAME = "Improved Scoop";
-        public const string PLUGIN_VERSION = "0.0.0";
+        public const string PLUGIN_VERSION = "0.0.1";
     }
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     [BepInProcess("Void Crew.exe")]

@@ -4,10 +4,12 @@
 
 # ImprovedScoop
 
-Version 0.0.0  
+Version 0.0.1  
 For Game Version 0.26.1  
 Developed by 18107, Dragon  
 Requires VoidManager 1.0.9
+
+Inspired by Maverik's BetterScoop
 
 
 ---------------------
@@ -15,7 +17,6 @@ Requires VoidManager 1.0.9
 ### 💡 Function - **Improves the gravity scoop**
 
 - All options configurable in game
-
 - Increased max range
 - Faster pull speed
 - Larger catch radius

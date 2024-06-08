@@ -75,13 +75,13 @@ namespace ImprovedScoop
             if (Button("Apply") && float.TryParse(PullVelocityMultiplierString, out float pullVelocityMultiplier))
             {
                 ScoopConfig.PullVelocityMultiplier.Value = pullVelocityMultiplier;
-                IterateAttractors((attractor) => ((ModifiableFloat)PullVelocityField.GetValue(attractor)).SetBaseValue(ScoopConfig.pullVelocityBase * pullVelocityMultiplier));
+                IterateAttractors((attractor) => ((ModifiableFloat)PullVelocityField.GetValue(attractor)).SetBaseValue(ScoopConfig.pullVelocityBase * CarryableAttractorPatch.TierModifier(attractor) * pullVelocityMultiplier));
             }
             if (Button("Reset"))
             {
                 ScoopConfig.PullVelocityMultiplier.Value = (float)ScoopConfig.PullVelocityMultiplier.DefaultValue;
                 PullVelocityMultiplierString = $"{ScoopConfig.PullVelocityMultiplier.Value}";
-                IterateAttractors((attractor) => ((ModifiableFloat)PullVelocityField.GetValue(attractor)).SetBaseValue(ScoopConfig.pullVelocityBase * ScoopConfig.PullVelocityMultiplier.Value));
+                IterateAttractors((attractor) => ((ModifiableFloat)PullVelocityField.GetValue(attractor)).SetBaseValue(ScoopConfig.pullVelocityBase * CarryableAttractorPatch.TierModifier(attractor) * ScoopConfig.PullVelocityMultiplier.Value));
             }
             EndHorizontal();
 
