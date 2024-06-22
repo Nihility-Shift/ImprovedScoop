@@ -32,11 +32,11 @@ namespace ImprovedScoop
 
         public static float TierModifier(CarryableAttractor attractor)
         {
-            if (attractor.name.Contains("_02"))
+            if (attractor?.name?.Contains("_02") == true)
             {
                 return 2;
             }
-            else if (attractor.name.Contains("_03"))
+            else if (attractor?.name?.Contains("_03") == true)
             {
                 return 4;
             }
