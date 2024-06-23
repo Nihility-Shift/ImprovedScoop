@@ -5,6 +5,7 @@ using HarmonyLib;
 using System;
 using System.Reflection;
 using VoidManager.CustomGUI;
+using VoidManager.Utilities;
 using static UnityEngine.GUILayout;
 
 namespace ImprovedScoop
@@ -102,6 +103,17 @@ namespace ImprovedScoop
                 IterateAttractors((attractor) => CatchRadiusField.SetValue(attractor, ScoopConfig.catchRadiusBase * ScoopConfig.CatchRadiusMultiplier.Value));
             }
             EndHorizontal();
+
+            bool processAlloys = ScoopConfig.ProcessAlloys.Value;
+            if (GUITools.DrawCheckbox("Process Alloys", ref processAlloys)) {
+                ScoopConfig.ProcessAlloys.Value = processAlloys;
+            }
+
+            bool processBiomass = ScoopConfig.ProcessBiomass.Value;
+            if (GUITools.DrawCheckbox("Process Biomass", ref processBiomass))
+            {
+                ScoopConfig.ProcessBiomass.Value = processBiomass;
+            }
         }
 
         private void IterateAttractors(Action<CarryableAttractor> action)

@@ -22,12 +22,17 @@ namespace ImprovedScoop
         internal static ConfigEntry<float> PullVelocityMultiplier;
         internal static ConfigEntry<float> CatchRadiusMultiplier;
 
+        internal static ConfigEntry<bool> ProcessAlloys;
+        internal static ConfigEntry<bool> ProcessBiomass;
+
         internal static void BindConfigs(BepinPlugin plugin)
         {
             ItemBlacklist = plugin.Config.Bind("GravityScoop", "ItemBlacklist", GUIDsToHex(ItemBlacklistDefault));
             MaxRangeMultiplier = plugin.Config.Bind("GravityScoop", "MaxRangeMultiplier", 2f);
             PullVelocityMultiplier = plugin.Config.Bind("GravityScoop", "PullVelocityMultiplier", 3f);
             CatchRadiusMultiplier = plugin.Config.Bind("GravityScoop", "CatchRadiusMultiplier", 1.5f);
+            ProcessAlloys = plugin.Config.Bind("GravityScoop", "ProcessAlloys", false);
+            ProcessBiomass = plugin.Config.Bind("GravityScoop", "ProcessBiomass", false);
         }
 
         internal static List<GUIDUnion> HexToGUIDs(string str)
