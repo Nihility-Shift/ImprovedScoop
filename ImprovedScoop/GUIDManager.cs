@@ -26,6 +26,8 @@ namespace ImprovedScoop
 
         public static List<GUIDUnion> GetGUIDs(string displayNameCSV)
         {
+            if (string.IsNullOrEmpty(displayNameCSV)) return new List<GUIDUnion>();
+
             string[] displayNames = displayNameCSV.Split(',');
             List<GUIDUnion> guids = new();
 

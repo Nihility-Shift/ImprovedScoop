@@ -1,25 +1,36 @@
 ﻿using CG.Objects;
+using CG.Ship.Hull;
 using CG.Ship.Modules;
 using Gameplay.Utilities;
 using HarmonyLib;
 using Photon.Pun;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace ImprovedScoop
 {
     [HarmonyPatch(typeof(CarryableAttractor))]
     internal class CarryableAttractorPatch
     {
-        public static List<GUIDUnion> dotNotAttract = ScoopConfig.HexToGUIDs(ScoopConfig.ItemBlacklist.Value);
+        internal static List<GUIDUnion> dotNotAttract = ScoopConfig.HexToGUIDs(ScoopConfig.ItemBlacklist.Value);
+
+        private static readonly FieldInfo carryablesSocketProviderField = AccessTools.Field(typeof(CarryableAttractor), "_carryablesSocketProvider");
 
         [HarmonyPrefix]
         [HarmonyPatch("Awake")]
         static void Awake(CarryableAttractor __instance, ref float ____catchRadius, ref ModifiableFloat ___MaxRange, ref ModifiableFloat ____pullVelocity)
         {
-            
             ____catchRadius = ScoopConfig.catchRadiusBase * ScoopConfig.CatchRadiusMultiplier.Value;
             ___MaxRange = ScoopConfig.maxRangeBase * ScoopConfig.MaxRangeMultiplier.Value;
             ____pullVelocity = ScoopConfig.pullVelocityBase * TierModifier(__instance) * ScoopConfig.PullVelocityMultiplier.Value;
+            GravityScoop.gravityScoops.Add(__instance, ((CarryablesSocketProvider)carryablesSocketProviderField.GetValue(__instance)).Sockets);
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("OnDestroy")]
+        static void OnDestroy(CarryableAttractor __instance)
+        {
+            GravityScoop.gravityScoops.Remove(__instance);
         }
 
         [HarmonyPostfix]

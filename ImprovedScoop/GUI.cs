@@ -16,6 +16,7 @@ namespace ImprovedScoop
         private readonly FieldInfo CatchRadiusField = AccessTools.Field(typeof(CarryableAttractor), "_catchRadius");
 
         private string ItemBlacklistString;
+        private string ItemEjectlistString;
         private string MaxRangeMultiplierString = $"{ScoopConfig.MaxRangeMultiplier.Value}";
         private string PullVelocityMultiplierString = $"{ScoopConfig.PullVelocityMultiplier.Value}";
         private string CatchRadiusMultiplierString = $"{ScoopConfig.CatchRadiusMultiplier.Value}";
@@ -25,6 +26,7 @@ namespace ImprovedScoop
         public override void OnOpen()
         {
             ItemBlacklistString = GUIDManager.GetDisplayNameList(CarryableAttractorPatch.dotNotAttract);
+            ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoop.eject);
         }
 
         public override void Draw()
@@ -46,6 +48,26 @@ namespace ImprovedScoop
                 CarryableAttractorPatch.dotNotAttract = ScoopConfig.ItemBlacklistDefault;
                 ScoopConfig.ItemBlacklist.Value = ScoopConfig.GUIDsToHex(CarryableAttractorPatch.dotNotAttract);
                 ItemBlacklistString = GUIDManager.GetDisplayNameList(CarryableAttractorPatch.dotNotAttract);
+            }
+            EndHorizontal();
+
+
+            //Item Ejectlist
+            BeginHorizontal();
+            Label("Eject these items:");
+            ItemEjectlistString = TextField(ItemEjectlistString, MinWidth(80));
+            FlexibleSpace();
+            if (Button("Apply"))
+            {
+                GravityScoop.eject = GUIDManager.GetGUIDs(ItemEjectlistString);
+                ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoop.eject);
+                ScoopConfig.ItemEjectlist.Value = ScoopConfig.GUIDsToHex(GUIDManager.GetGUIDs(ItemEjectlistString));
+            }
+            if (Button("Reset"))
+            {
+                GravityScoop.eject = ScoopConfig.ItemEjectlistDefault;
+                ScoopConfig.ItemEjectlist.Value = ScoopConfig.GUIDsToHex(GravityScoop.eject);
+                ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoop.eject);
             }
             EndHorizontal();
 
