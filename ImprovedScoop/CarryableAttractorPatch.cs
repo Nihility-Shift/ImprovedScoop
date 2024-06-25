@@ -23,14 +23,20 @@ namespace ImprovedScoop
             ____catchRadius = ScoopConfig.catchRadiusBase * ScoopConfig.CatchRadiusMultiplier.Value;
             ___MaxRange = ScoopConfig.maxRangeBase * ScoopConfig.MaxRangeMultiplier.Value;
             ____pullVelocity = ScoopConfig.pullVelocityBase * TierModifier(__instance) * ScoopConfig.PullVelocityMultiplier.Value;
-            GravityScoop.gravityScoops.Add(__instance, ((CarryablesSocketProvider)carryablesSocketProviderField.GetValue(__instance)).Sockets);
+            foreach (CarryablesSocket socket in ((CarryablesSocketProvider)carryablesSocketProviderField.GetValue(__instance)).Sockets)
+            {
+                socket.OnAcquireCarryable += GravityScoopEject.SocketItemInserted;
+            }
         }
 
         [HarmonyPrefix]
         [HarmonyPatch("OnDestroy")]
         static void OnDestroy(CarryableAttractor __instance)
         {
-            GravityScoop.gravityScoops.Remove(__instance);
+            foreach (CarryablesSocket socket in ((CarryablesSocketProvider)carryablesSocketProviderField.GetValue(__instance)).Sockets)
+            {
+                socket.OnAcquireCarryable -= GravityScoopEject.SocketItemInserted;
+            }
         }
 
         [HarmonyPostfix]

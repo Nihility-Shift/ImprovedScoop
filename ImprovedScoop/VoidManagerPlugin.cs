@@ -4,11 +4,6 @@ namespace ImprovedScoop
 {
     public class VoidManagerPlugin : VoidManager.VoidPlugin
     {
-        public VoidManagerPlugin()
-        {
-            VoidManager.Events.Instance.LateUpdate += GravityScoop.CheckAndEject;
-        }
-
         public override MultiplayerType MPType => MultiplayerType.Host;
 
         public override string Author => "18107, Dragon";

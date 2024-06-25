@@ -4,7 +4,7 @@
 
 # ImprovedScoop
 
-Version 0.1.0  
+Version 0.1.1  
 For Game Version 0.26.1  
 Developed by 18107, Dragon  
 Requires VoidManager 1.1.2

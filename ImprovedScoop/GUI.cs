@@ -26,7 +26,7 @@ namespace ImprovedScoop
         public override void OnOpen()
         {
             ItemBlacklistString = GUIDManager.GetDisplayNameList(CarryableAttractorPatch.dotNotAttract);
-            ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoop.eject);
+            ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoopEject.eject);
         }
 
         public override void Draw()
@@ -59,15 +59,15 @@ namespace ImprovedScoop
             FlexibleSpace();
             if (Button("Apply"))
             {
-                GravityScoop.eject = GUIDManager.GetGUIDs(ItemEjectlistString);
-                ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoop.eject);
+                GravityScoopEject.eject = GUIDManager.GetGUIDs(ItemEjectlistString);
+                ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoopEject.eject);
                 ScoopConfig.ItemEjectlist.Value = ScoopConfig.GUIDsToHex(GUIDManager.GetGUIDs(ItemEjectlistString));
             }
             if (Button("Reset"))
             {
-                GravityScoop.eject = ScoopConfig.ItemEjectlistDefault;
-                ScoopConfig.ItemEjectlist.Value = ScoopConfig.GUIDsToHex(GravityScoop.eject);
-                ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoop.eject);
+                GravityScoopEject.eject = ScoopConfig.ItemEjectlistDefault;
+                ScoopConfig.ItemEjectlist.Value = ScoopConfig.GUIDsToHex(GravityScoopEject.eject);
+                ItemEjectlistString = GUIDManager.GetDisplayNameList(GravityScoopEject.eject);
             }
             EndHorizontal();
 
