@@ -29,6 +29,9 @@ namespace ImprovedScoop
 
         internal static ConfigEntry<bool> ProcessAlloys;
         internal static ConfigEntry<bool> ProcessBiomass;
+        internal static ConfigEntry<bool> ProcessShards;
+        internal static ConfigEntry<bool> ProcessSummonShards;
+        internal static ConfigEntry<bool> MoveToShelf;
 
         internal static void BindConfigs(BepinPlugin plugin)
         {
@@ -39,6 +42,9 @@ namespace ImprovedScoop
             CatchRadiusMultiplier = plugin.Config.Bind("GravityScoop", "CatchRadiusMultiplier", 1.5f);
             ProcessAlloys = plugin.Config.Bind("GravityScoop", "ProcessAlloys", false);
             ProcessBiomass = plugin.Config.Bind("GravityScoop", "ProcessBiomass", false);
+            ProcessShards = plugin.Config.Bind("GravityScoop", "ProcessShards", false);
+            ProcessSummonShards = plugin.Config.Bind("GravityScoop", "ProcessSummonShards", false);
+            MoveToShelf = plugin.Config.Bind("GravityScoop", "MoveToShelf", false);
         }
 
         internal static List<GUIDUnion> HexToGUIDs(string str)

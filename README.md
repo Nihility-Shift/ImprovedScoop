@@ -4,7 +4,7 @@
 
 # ImprovedScoop
 
-Version 0.1.1  
+Version 0.1.2  
 For Game Version 0.26.1  
 Developed by 18107, Dragon  
 Requires VoidManager 1.1.2
@@ -22,7 +22,9 @@ Inspired by Maverik's BetterScoop
 - Larger catch radius
 - Does not collect mission items (decoy, power fuse)
 - Automatic processing of alloys and biomass
+- Automatic processing of data shards
 - Eject lures (or other configured items) by placing them in the scoop
+- Automatically place items in shelves
 
 ### 🎮 Client Usage
 
