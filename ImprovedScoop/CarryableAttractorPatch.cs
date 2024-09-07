@@ -40,7 +40,7 @@ namespace ImprovedScoop
         }
 
         [HarmonyPostfix]
-        [HarmonyPatch("GetPossibleItemsToAttrack")]
+        [HarmonyPatch("GetPossibleItemsToAttract")]
         static void GetPossibleItemsToAttrack(ref List<AbstractCarryableObject> __result)
         {
             if (!PhotonNetwork.IsMasterClient) return;

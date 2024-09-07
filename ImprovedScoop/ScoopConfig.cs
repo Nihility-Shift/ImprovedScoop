@@ -27,12 +27,6 @@ namespace ImprovedScoop
         internal static ConfigEntry<float> PullVelocityMultiplier;
         internal static ConfigEntry<float> CatchRadiusMultiplier;
 
-        internal static ConfigEntry<bool> ProcessAlloys;
-        internal static ConfigEntry<bool> ProcessBiomass;
-        internal static ConfigEntry<bool> ProcessShards;
-        internal static ConfigEntry<bool> ProcessSummonShards;
-        internal static ConfigEntry<bool> MoveToShelf;
-
         internal static void BindConfigs()
         {
             ItemBlacklist = BepinPlugin.instance.Config.Bind("GravityScoop", "ItemBlacklist", GUIDsToHex(ItemBlacklistDefault));
@@ -40,11 +34,6 @@ namespace ImprovedScoop
             MaxRangeMultiplier = BepinPlugin.instance.Config.Bind("GravityScoop", "MaxRangeMultiplier", 2f);
             PullVelocityMultiplier = BepinPlugin.instance.Config.Bind("GravityScoop", "PullVelocityMultiplier", 3f);
             CatchRadiusMultiplier = BepinPlugin.instance.Config.Bind("GravityScoop", "CatchRadiusMultiplier", 1.5f);
-            ProcessAlloys = BepinPlugin.instance.Config.Bind("GravityScoop", "ProcessAlloys", false);
-            ProcessBiomass = BepinPlugin.instance.Config.Bind("GravityScoop", "ProcessBiomass", false);
-            ProcessShards = BepinPlugin.instance.Config.Bind("GravityScoop", "ProcessShards", false);
-            ProcessSummonShards = BepinPlugin.instance.Config.Bind("GravityScoop", "ProcessSummonShards", false);
-            MoveToShelf = BepinPlugin.instance.Config.Bind("GravityScoop", "MoveToShelf", false);
         }
 
         internal static List<GUIDUnion> HexToGUIDs(string str)
