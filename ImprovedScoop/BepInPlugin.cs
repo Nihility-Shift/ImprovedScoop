@@ -5,24 +5,20 @@ using System.Reflection;
 
 namespace ImprovedScoop
 {
-    internal static class MyPluginInfo
-    {
-        public const string PLUGIN_GUID = "improvedscoop";
-        public const string PLUGIN_NAME = "Improved Scoop";
-        public const string PLUGIN_VERSION = "0.1.2";
-    }
-    [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.USERS_PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     [BepInProcess("Void Crew.exe")]
-    [BepInDependency("VoidManager")]
+    [BepInDependency(VoidManager.MyPluginInfo.PLUGIN_GUID)]
     public class BepinPlugin : BaseUnityPlugin
     {
+        internal static BepinPlugin instance;
+
         internal static ManualLogSource Log;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "N/A")]
         private void Awake()
         {
+            instance = this;
             Log = Logger;
-            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID);
-            ScoopConfig.BindConfigs(this);
-            GUIDManager.GenerateDictionaries();
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }
     }

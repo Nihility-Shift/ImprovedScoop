@@ -33,18 +33,18 @@ namespace ImprovedScoop
         internal static ConfigEntry<bool> ProcessSummonShards;
         internal static ConfigEntry<bool> MoveToShelf;
 
-        internal static void BindConfigs(BepinPlugin plugin)
+        internal static void BindConfigs()
         {
-            ItemBlacklist = plugin.Config.Bind("GravityScoop", "ItemBlacklist", GUIDsToHex(ItemBlacklistDefault));
-            ItemEjectlist = plugin.Config.Bind("GravityScoop", "ItemEjectlist", GUIDsToHex(ItemEjectlistDefault));
-            MaxRangeMultiplier = plugin.Config.Bind("GravityScoop", "MaxRangeMultiplier", 2f);
-            PullVelocityMultiplier = plugin.Config.Bind("GravityScoop", "PullVelocityMultiplier", 3f);
-            CatchRadiusMultiplier = plugin.Config.Bind("GravityScoop", "CatchRadiusMultiplier", 1.5f);
-            ProcessAlloys = plugin.Config.Bind("GravityScoop", "ProcessAlloys", false);
-            ProcessBiomass = plugin.Config.Bind("GravityScoop", "ProcessBiomass", false);
-            ProcessShards = plugin.Config.Bind("GravityScoop", "ProcessShards", false);
-            ProcessSummonShards = plugin.Config.Bind("GravityScoop", "ProcessSummonShards", false);
-            MoveToShelf = plugin.Config.Bind("GravityScoop", "MoveToShelf", false);
+            ItemBlacklist = BepinPlugin.instance.Config.Bind("GravityScoop", "ItemBlacklist", GUIDsToHex(ItemBlacklistDefault));
+            ItemEjectlist = BepinPlugin.instance.Config.Bind("GravityScoop", "ItemEjectlist", GUIDsToHex(ItemEjectlistDefault));
+            MaxRangeMultiplier = BepinPlugin.instance.Config.Bind("GravityScoop", "MaxRangeMultiplier", 2f);
+            PullVelocityMultiplier = BepinPlugin.instance.Config.Bind("GravityScoop", "PullVelocityMultiplier", 3f);
+            CatchRadiusMultiplier = BepinPlugin.instance.Config.Bind("GravityScoop", "CatchRadiusMultiplier", 1.5f);
+            ProcessAlloys = BepinPlugin.instance.Config.Bind("GravityScoop", "ProcessAlloys", false);
+            ProcessBiomass = BepinPlugin.instance.Config.Bind("GravityScoop", "ProcessBiomass", false);
+            ProcessShards = BepinPlugin.instance.Config.Bind("GravityScoop", "ProcessShards", false);
+            ProcessSummonShards = BepinPlugin.instance.Config.Bind("GravityScoop", "ProcessSummonShards", false);
+            MoveToShelf = BepinPlugin.instance.Config.Bind("GravityScoop", "MoveToShelf", false);
         }
 
         internal static List<GUIDUnion> HexToGUIDs(string str)

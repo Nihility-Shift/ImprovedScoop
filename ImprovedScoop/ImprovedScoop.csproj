@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>ImprovedScoop</AssemblyName>
-    <Description>Template</Description>
-    <Version>0.0.0</Version>
+    <Description>Increases Range, Radius, and Pull speed of gravity scoops. Ignores Mission Items, Configurable in-game. \n\nInspired by Maverik's BetterScoop</Description>
+    <Version>0.1.3</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>
@@ -13,109 +12,107 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
     <RootNamespace>ImprovedScoop</RootNamespace>
+    <AssemblyTitle>Increases Range, Radius, and Pull speed of gravity scoops. Ignores Mission Items, Configurable in-game. \n\nInspired by Maverik's BetterScoop</AssemblyTitle>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />
   </ItemGroup>
-  
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Void Crew\Void Crew_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Void Crew\Void Crew_Data\Managed\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PhotonUnityNetworking">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Void Crew\Void Crew_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+      <HintPath>..\..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\PhotonUnityNetworking.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ResourceAssets">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Void Crew\Void Crew_Data\Managed\ResourceAssets.dll</HintPath>
+      <HintPath>..\..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\ResourceAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Void Crew\Void Crew_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>..\..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\Files\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VoidManager">
-      <HintPath>..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\bin\Debug\net472\VoidManager.dll</HintPath>
+      <HintPath>..\..\..\Void-Crew-Modding-Team\VoidManager\VoidManager\bin\Debug\net472\VoidManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="mscorlib">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System.Core">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System.Data">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System.Drawing">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System.IO.Compression.FileSystem">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System.Numerics">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System.Runtime.Serialization">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System.Xml">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Update="System.Xml.Linq">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="powershell.exe -NonInteractive -ExecutionPolicy Bypass -NoProfile -file &quot;$(ProjectDir)PreBuild.ps1&quot; $(OutDir) $(SolutionDir)" />
+  </Target>
 </Project>
