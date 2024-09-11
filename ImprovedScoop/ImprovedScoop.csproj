@@ -12,7 +12,7 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
     <RootNamespace>ImprovedScoop</RootNamespace>
-    <AssemblyTitle>Improves the gravity scoop. Inspired by Maverik's 'Better Scoop'. Session Mod.</AssemblyTitle>
+    <AssemblyTitle>Increases Range, Radius, and Pull speed of gravity scoops. Ignores Mission Items. Inspired by Maverik's 'Better Scoop'. Session Mod.</AssemblyTitle>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />

@@ -3,6 +3,7 @@ using CG.Network;
 using CG.Objects;
 using CG.Ship.Hull;
 using CG.Ship.Modules;
+using Gameplay.Tags;
 using HarmonyLib;
 using RSG;
 using System;
@@ -23,7 +24,7 @@ namespace ImprovedScoop
             {
                 int.TryParse(name.Substring(name.Length - 1), out int tier);
                 OnInsertCompleted(__instance);
-                GameSessionProgressTracker.Instance.ModifyAlloyCount(tier*3, ResourceChangeAlloy.RECYCLE, __instance.carryable.assetGuid);
+                GameSessionSuppliesManager.Instance.ModifyAlloyCount(tier*3, ResourceChangeAlloy.RECYCLE, __instance.carryable.assetGuid);
                 ObjectFactory.DestroyCloneStarObject(__instance.carryable);
                 return false;
             }
@@ -33,7 +34,7 @@ namespace ImprovedScoop
                 int.TryParse(name.Substring(name.Length - 1), out int tier);
                 int amount = tier switch { 1 => 25, 2 => 75, 3 => 150, _ => 0 };
                 OnInsertCompleted(__instance);
-                GameSessionProgressTracker.Instance.ModifyBiomassCount(amount, ResourceChangeBiomass.BIOMASS_DISPENSOR, __instance.carryable.assetGuid);
+                GameSessionSuppliesManager.Instance.ModifyBiomassCount(amount, ResourceChangeBiomass.BIOMASS_DISPENSOR, __instance.carryable.assetGuid);
                 ObjectFactory.DestroyCloneStarObject(__instance.carryable);
                 return false;
             }
