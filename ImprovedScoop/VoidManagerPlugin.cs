@@ -6,8 +6,10 @@ namespace ImprovedScoop
     {
         public override MultiplayerType MPType => MultiplayerType.Host;
 
-        public override string Author => "18107, Dragon";
+        public override string Author => MyPluginInfo.PLUGIN_AUTHORS;
 
-        public override string Description => "Increases Range, Radius, and Pull speed of gravity scoops. Ignores Mission Items, Configurable in-game. \n\nInspired by Maverik's BetterScoop";
+        public override string Description => MyPluginInfo.PLUGIN_DESCRIPTION;
+
+        public override string ThunderstoreID => MyPluginInfo.PLUGIN_THUNDERSTORE_ID;
     }
 }
