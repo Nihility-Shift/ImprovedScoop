@@ -125,38 +125,6 @@ namespace ImprovedScoop
                 IterateAttractors((attractor) => CatchRadiusField.SetValue(attractor, ScoopConfig.catchRadiusBase * ScoopConfig.CatchRadiusMultiplier.Value));
             }
             EndHorizontal();
-
-            bool processAlloys = ScoopConfig.ProcessAlloys.Value;
-            if (GUITools.DrawCheckbox("Process Alloys", ref processAlloys)) {
-                ScoopConfig.ProcessAlloys.Value = processAlloys;
-            }
-
-            bool processBiomass = ScoopConfig.ProcessBiomass.Value;
-            if (GUITools.DrawCheckbox("Process Biomass", ref processBiomass))
-            {
-                ScoopConfig.ProcessBiomass.Value = processBiomass;
-            }
-
-            BeginHorizontal();
-            bool processShards = ScoopConfig.ProcessShards.Value;
-            if (GUITools.DrawCheckbox("Process data shards", ref processShards))
-            {
-                ScoopConfig.ProcessShards.Value = processShards;
-            }
-            Space(10);
-            bool processSummonShards = ScoopConfig.ProcessSummonShards.Value;
-            if (GUITools.DrawCheckbox("Include Minefield and Escort shards", ref processSummonShards))
-            {
-                ScoopConfig.ProcessSummonShards.Value = processSummonShards;
-            }
-            FlexibleSpace();
-            EndHorizontal();
-
-            bool moveToShelf = ScoopConfig.MoveToShelf.Value;
-            if (GUITools.DrawCheckbox("Put items in shelves", ref moveToShelf))
-            {
-                ScoopConfig.MoveToShelf.Value = moveToShelf;
-            }
         }
 
         private void IterateAttractors(Action<CarryableAttractor> action)
