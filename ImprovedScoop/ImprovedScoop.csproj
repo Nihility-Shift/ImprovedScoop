@@ -14,6 +14,12 @@
     <RootNamespace>ImprovedScoop</RootNamespace>
     <AssemblyTitle>Increases Range, Radius, and Pull speed of gravity scoops. Ignores Mission Items. Inspired by Maverik's 'Better Scoop'. Session Mod.</AssemblyTitle>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />

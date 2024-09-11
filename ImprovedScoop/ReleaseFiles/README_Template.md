@@ -14,17 +14,14 @@ Inspired by Maverik's BetterScoop
 
 ---------------------
 
-### 💡 Function(s) - **Improves the gravity scoop**
+### 💡 Functions - **Improves the gravity scoop**
 
 - All options configurable in game
 - Increased max range
 - Faster pull speed
 - Larger catch radius
 - Does not collect mission items (decoy, power fuse)
-- Automatic processing of alloys and biomass
-- Automatic processing of data shards
 - Eject lures (or other configured items) by placing them in the scoop
-- Automatically place items in shelves
 
 ### 🎮 Client Usage
 
