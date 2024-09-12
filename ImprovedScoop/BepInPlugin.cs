@@ -16,7 +16,6 @@ namespace ImprovedScoop
             Log = Logger;
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID);
             ScoopConfig.BindConfigs(this);
-            GUIDManager.GenerateDictionaries();
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }
     }

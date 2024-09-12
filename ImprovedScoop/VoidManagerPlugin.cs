@@ -4,6 +4,11 @@ namespace ImprovedScoop
 {
     public class VoidManagerPlugin : VoidManager.VoidPlugin
     {
+        public VoidManagerPlugin()
+        {
+            GUIDManager.GenerateDictionaries();
+        }
+
         public override MultiplayerType MPType => MultiplayerType.Host;
 
         public override string Author => MyPluginInfo.PLUGIN_AUTHORS;
