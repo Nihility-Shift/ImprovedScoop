@@ -33,7 +33,7 @@ Inspired by Maverik's BetterScoop
 - ✅ Host
   - Only the host needs this mod.
 - ✅ Session
-  - Requires the room to be marked as Mod_Session.
+  - Marks the room as Mod_Session when hosting.
 
 ---------------------
 

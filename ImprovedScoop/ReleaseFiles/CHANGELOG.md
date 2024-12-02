@@ -1,3 +1,6 @@
+## 0.1.4
+- Updated for Void Crew 1.0.0
+
 ## 0.1.3
 - Updated for Void Crew 0.27.0 (Update 5).
 - Removed features to stay in compliance without disabling progression.
