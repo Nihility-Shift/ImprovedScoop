@@ -34,7 +34,7 @@ namespace ImprovedScoop
         {
             ItemBlacklist = plugin.Config.Bind("GravityScoop", "ItemBlacklist", GUIDsToHex(ItemBlacklistDefault));
             ItemEjectlist = plugin.Config.Bind("GravityScoop", "ItemEjectlist", GUIDsToHex(ItemEjectlistDefault));
-            MaxRangeMultiplier = plugin.Config.Bind("GravityScoop", "MaxRangeMultiplier", 2f);
+            MaxRangeMultiplier = plugin.Config.Bind("GravityScoop", "MaxRangeMultiplier", 1.5f);
             PullVelocityMultiplier = plugin.Config.Bind("GravityScoop", "PullVelocityMultiplier", 3f);
             CatchRadiusMultiplier = plugin.Config.Bind("GravityScoop", "CatchRadiusMultiplier", 1.5f);
             ProcessAlloys = plugin.Config.Bind("GravityScoop", "ProcessAlloys", false);
