@@ -1,5 +1,7 @@
 ## 0.1.4
 - Updated for Void Crew 1.0.0
+- Fixed misconfiguration of multipliers, leading to the same range values applied to all levels of scoop and an incorrect range multiplier.
+- Adjusted MaxRange default value from 2 to 1.5
 
 ## 0.1.3
 - Updated for Void Crew 0.27.0 (Update 5).
