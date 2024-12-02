@@ -17,9 +17,6 @@ namespace ImprovedScoop
         {
             new("ee69440bbce371e458daeba6eee12a49"), //EnemyLuerer
         };
-        internal const float maxRangeBase = 200f;
-        internal const float pullVelocityBase = 10f;
-        internal const float catchRadiusBase = 3f;
 
         internal static ConfigEntry<string> ItemBlacklist;
         internal static ConfigEntry<string> ItemEjectlist;

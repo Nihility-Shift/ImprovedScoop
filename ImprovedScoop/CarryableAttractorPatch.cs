@@ -5,7 +5,6 @@ using Gameplay.Utilities;
 using HarmonyLib;
 using Photon.Pun;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace ImprovedScoop
 {
@@ -14,16 +13,22 @@ namespace ImprovedScoop
     {
         internal static List<GUIDUnion> dotNotAttract = ScoopConfig.HexToGUIDs(ScoopConfig.ItemBlacklist.Value);
 
-        private static readonly FieldInfo carryablesSocketProviderField = AccessTools.Field(typeof(CarryableAttractor), "_carryablesSocketProvider");
-
         [HarmonyPrefix]
         [HarmonyPatch("Awake")]
         static void Awake(CarryableAttractor __instance, ref float ____catchRadius, ref ModifiableFloat ___MaxRange, ref ModifiableFloat ____pullVelocity)
         {
-            ____catchRadius = ScoopConfig.catchRadiusBase * ScoopConfig.CatchRadiusMultiplier.Value;
-            ___MaxRange = ScoopConfig.maxRangeBase * ScoopConfig.MaxRangeMultiplier.Value;
-            ____pullVelocity = ScoopConfig.pullVelocityBase * TierModifier(__instance) * ScoopConfig.PullVelocityMultiplier.Value;
-            foreach (CarryablesSocket socket in ((CarryablesSocketProvider)carryablesSocketProviderField.GetValue(__instance)).Sockets)
+            if (VoidManager.BepinPlugin.Bindings.IsDebugMode)
+                BepinPlugin.Log.LogInfo($"Patching awake for {__instance.name}. Catch Radius: {____catchRadius}, Range: {___MaxRange.Value}:{___MaxRange.BaseValue}, Velocity: {____pullVelocity.Value}:{____pullVelocity.BaseValue}");
+
+            //Assign multiplied values
+            ____catchRadius *= ScoopConfig.CatchRadiusMultiplier.Value;
+            ___MaxRange.SetBaseValue(___MaxRange.BaseValue * ScoopConfig.MaxRangeMultiplier.Value);
+            ____pullVelocity.SetBaseValue(____pullVelocity.BaseValue * ScoopConfig.PullVelocityMultiplier.Value);
+
+            if (VoidManager.BepinPlugin.Bindings.IsDebugMode)
+                BepinPlugin.Log.LogInfo($"Patched awake for {__instance.name}. Catch Radius: {____catchRadius}, Range: {___MaxRange.Value}:{___MaxRange.BaseValue}, Velocity: {____pullVelocity.Value}:{____pullVelocity.BaseValue}");
+
+            foreach (CarryablesSocket socket in __instance._carryablesSocketProvider.Sockets)
             {
                 socket.OnAcquireCarryable += GravityScoopEject.SocketItemInserted;
             }
@@ -33,7 +38,7 @@ namespace ImprovedScoop
         [HarmonyPatch("OnDestroy")]
         static void OnDestroy(CarryableAttractor __instance)
         {
-            foreach (CarryablesSocket socket in ((CarryablesSocketProvider)carryablesSocketProviderField.GetValue(__instance)).Sockets)
+            foreach (CarryablesSocket socket in __instance._carryablesSocketProvider.Sockets)
             {
                 socket.OnAcquireCarryable -= GravityScoopEject.SocketItemInserted;
             }
@@ -45,19 +50,6 @@ namespace ImprovedScoop
         {
             if (!PhotonNetwork.IsMasterClient) return;
             __result.RemoveAll(item => dotNotAttract.Contains(item.assetGuid));
-        }
-
-        public static float TierModifier(CarryableAttractor attractor)
-        {
-            if (attractor?.name?.Contains("_02") == true)
-            {
-                return 2;
-            }
-            else if (attractor?.name?.Contains("_03") == true)
-            {
-                return 4;
-            }
-            return 1;
         }
     }
 }

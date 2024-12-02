@@ -1,9 +1,6 @@
 ﻿using CG.Game;
 using CG.Ship.Modules;
-using Gameplay.Utilities;
-using HarmonyLib;
 using System;
-using System.Reflection;
 using VoidManager.CustomGUI;
 using static UnityEngine.GUILayout;
 
@@ -11,9 +8,6 @@ namespace ImprovedScoop
 {
     internal class GUI : ModSettingsMenu
     {
-        private readonly FieldInfo PullVelocityField = AccessTools.Field(typeof(CarryableAttractor), "_pullVelocity");
-        private readonly FieldInfo CatchRadiusField = AccessTools.Field(typeof(CarryableAttractor), "_catchRadius");
-
         private string ItemBlacklistString;
         private string ItemEjectlistString;
         private string MaxRangeMultiplierString = $"{ScoopConfig.MaxRangeMultiplier.Value}";
@@ -76,15 +70,18 @@ namespace ImprovedScoop
             Label("Max range multiplier:");
             MaxRangeMultiplierString = TextField(MaxRangeMultiplierString, MinWidth(80));
             FlexibleSpace();
-            if (Button("Apply") && float.TryParse(MaxRangeMultiplierString, out float maxRangeMultiplier)) {
+            if (Button("Apply") && float.TryParse(MaxRangeMultiplierString, out float maxRangeMultiplier)) 
+            {
+                IterateAttractors((attractor) => attractor.MaxRange.SetBaseValue(attractor.MaxRange.BaseValue / ScoopConfig.MaxRangeMultiplier.Value));
                 ScoopConfig.MaxRangeMultiplier.Value = maxRangeMultiplier;
-                IterateAttractors((attractor) => attractor.MaxRange.SetBaseValue(ScoopConfig.maxRangeBase * maxRangeMultiplier));
+                IterateAttractors((attractor) => attractor.MaxRange.SetBaseValue(attractor.MaxRange.BaseValue * maxRangeMultiplier));
             }
             if (Button("Reset"))
             {
+                IterateAttractors((attractor) => attractor.MaxRange.SetBaseValue(attractor.MaxRange.BaseValue / ScoopConfig.MaxRangeMultiplier.Value));
                 ScoopConfig.MaxRangeMultiplier.Value = (float)ScoopConfig.MaxRangeMultiplier.DefaultValue;
                 MaxRangeMultiplierString = $"{ScoopConfig.MaxRangeMultiplier.Value}";
-                IterateAttractors((attractor) => attractor.MaxRange.SetBaseValue(ScoopConfig.maxRangeBase * ScoopConfig.MaxRangeMultiplier.Value));
+                IterateAttractors((attractor) => attractor.MaxRange.SetBaseValue(attractor.MaxRange.BaseValue * ScoopConfig.MaxRangeMultiplier.Value));
             }
             EndHorizontal();
 
@@ -96,14 +93,16 @@ namespace ImprovedScoop
             FlexibleSpace();
             if (Button("Apply") && float.TryParse(PullVelocityMultiplierString, out float pullVelocityMultiplier))
             {
+                IterateAttractors((attractor) => attractor._pullVelocity.SetBaseValue(attractor._pullVelocity.BaseValue / ScoopConfig.PullVelocityMultiplier.Value));
                 ScoopConfig.PullVelocityMultiplier.Value = pullVelocityMultiplier;
-                IterateAttractors((attractor) => ((ModifiableFloat)PullVelocityField.GetValue(attractor)).SetBaseValue(ScoopConfig.pullVelocityBase * CarryableAttractorPatch.TierModifier(attractor) * pullVelocityMultiplier));
+                IterateAttractors((attractor) => attractor._pullVelocity.SetBaseValue(attractor._pullVelocity.BaseValue * pullVelocityMultiplier));
             }
             if (Button("Reset"))
             {
+                IterateAttractors((attractor) => attractor._pullVelocity.SetBaseValue(attractor._pullVelocity.BaseValue / ScoopConfig.PullVelocityMultiplier.Value));
                 ScoopConfig.PullVelocityMultiplier.Value = (float)ScoopConfig.PullVelocityMultiplier.DefaultValue;
                 PullVelocityMultiplierString = $"{ScoopConfig.PullVelocityMultiplier.Value}";
-                IterateAttractors((attractor) => ((ModifiableFloat)PullVelocityField.GetValue(attractor)).SetBaseValue(ScoopConfig.pullVelocityBase * CarryableAttractorPatch.TierModifier(attractor) * ScoopConfig.PullVelocityMultiplier.Value));
+                IterateAttractors((attractor) => attractor._pullVelocity.SetBaseValue(attractor._pullVelocity.BaseValue * ScoopConfig.PullVelocityMultiplier.Value));
             }
             EndHorizontal();
 
@@ -113,15 +112,18 @@ namespace ImprovedScoop
             Label("Catch radius multiplier:");
             CatchRadiusMultiplierString = TextField(CatchRadiusMultiplierString, MinWidth(80));
             FlexibleSpace();
-            if (Button("Apply") && float.TryParse(CatchRadiusMultiplierString, out float catchRadiusMultiplier)) {
+            if (Button("Apply") && float.TryParse(CatchRadiusMultiplierString, out float catchRadiusMultiplier))
+            {
+                IterateAttractors((attractor) => attractor._catchRadius /= ScoopConfig.CatchRadiusMultiplier.Value);
                 ScoopConfig.CatchRadiusMultiplier.Value = catchRadiusMultiplier;
-                IterateAttractors((attractor) => CatchRadiusField.SetValue(attractor, ScoopConfig.catchRadiusBase * catchRadiusMultiplier));
+                IterateAttractors((attractor) => attractor._catchRadius *= catchRadiusMultiplier);
             }
             if (Button("Reset"))
             {
+                IterateAttractors((attractor) => attractor._catchRadius /= ScoopConfig.CatchRadiusMultiplier.Value);
                 ScoopConfig.CatchRadiusMultiplier.Value = (float)ScoopConfig.CatchRadiusMultiplier.DefaultValue;
                 CatchRadiusMultiplierString = $"{ScoopConfig.CatchRadiusMultiplier.Value}";
-                IterateAttractors((attractor) => CatchRadiusField.SetValue(attractor, ScoopConfig.catchRadiusBase * ScoopConfig.CatchRadiusMultiplier.Value));
+                IterateAttractors((attractor) => attractor._catchRadius *= ScoopConfig.CatchRadiusMultiplier.Value);
             }
             EndHorizontal();
         }
