@@ -1,5 +1,4 @@
-﻿using CG.Game.Scenarios.Conditions;
-using CG.Objects;
+﻿using CG.Objects;
 using ResourceAssets;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace ImprovedScoop
 
         public static void GenerateDictionaries()
         {
-            List<CarryableDef> items = ResourceAssetContainer<CarryableContainer, AbstractCarryableObject, CarryableDef>.Instance?.AssetDescriptions;
+            List<CarryableDef> items = ResourceAssetContainer<CarryableContainer, CarryableObject, CarryableDef>.Instance?.AssetDescriptions;
 
             if (items == null || items.Count == 0)
             {

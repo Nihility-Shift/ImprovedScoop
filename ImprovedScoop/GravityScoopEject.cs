@@ -51,7 +51,7 @@ namespace ImprovedScoop
             }
         }
 
-        internal static void SocketItemInserted(ICarrier carrier, AbstractCarryableObject carryable, ICarrier previousCarrier)
+        internal static void SocketItemInserted(ICarrier carrier, CarryableObject carryable, ICarrier previousCarrier)
         {
             if (!PhotonNetwork.IsMasterClient || !eject.Contains(carryable.assetGuid) || carrier is not CarryablesSocket) return;
 

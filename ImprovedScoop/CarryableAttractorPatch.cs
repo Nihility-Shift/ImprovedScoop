@@ -41,7 +41,7 @@ namespace ImprovedScoop
 
         [HarmonyPostfix]
         [HarmonyPatch("GetPossibleItemsToAttrack")]
-        static void GetPossibleItemsToAttrack(ref List<AbstractCarryableObject> __result)
+        static void GetPossibleItemsToAttrack(ref List<CarryableObject> __result)
         {
             if (!PhotonNetwork.IsMasterClient) return;
             __result.RemoveAll(item => dotNotAttract.Contains(item.assetGuid));

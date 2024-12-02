@@ -5,7 +5,6 @@ using HarmonyLib;
 using System;
 using System.Reflection;
 using VoidManager.CustomGUI;
-using VoidManager.Utilities;
 using static UnityEngine.GUILayout;
 
 namespace ImprovedScoop
