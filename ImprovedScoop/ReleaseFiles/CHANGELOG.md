@@ -1,3 +1,6 @@
+## 0.1.5
+- Updated for Void Crew 1.1.0
+
 ## 0.1.4
 - Updated for Void Crew 1.0.0
 - Fixed misconfiguration of multipliers, leading to the same range values applied to all levels of scoop and an incorrect range multiplier.
