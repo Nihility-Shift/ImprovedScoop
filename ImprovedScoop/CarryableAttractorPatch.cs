@@ -17,7 +17,7 @@ namespace ImprovedScoop
         [HarmonyPatch("Awake")]
         static void Awake(CarryableAttractor __instance, ref float ____catchRadius, ref ModifiableFloat ___MaxRange, ref ModifiableFloat ____pullVelocity)
         {
-            if (VoidManager.BepinPlugin.Bindings.IsDebugMode)
+            if (VoidManager.Configs.IsDebugMode)
                 BepinPlugin.Log.LogInfo($"Patching awake for {__instance.name}. Catch Radius: {____catchRadius}, Range: {___MaxRange.Value}:{___MaxRange.BaseValue}, Velocity: {____pullVelocity.Value}:{____pullVelocity.BaseValue}");
 
             //Assign multiplied values
@@ -25,7 +25,7 @@ namespace ImprovedScoop
             ___MaxRange.SetBaseValue(___MaxRange.BaseValue * ScoopConfig.MaxRangeMultiplier.Value);
             ____pullVelocity.SetBaseValue(____pullVelocity.BaseValue * ScoopConfig.PullVelocityMultiplier.Value);
 
-            if (VoidManager.BepinPlugin.Bindings.IsDebugMode)
+            if (VoidManager.Configs.IsDebugMode)
                 BepinPlugin.Log.LogInfo($"Patched awake for {__instance.name}. Catch Radius: {____catchRadius}, Range: {___MaxRange.Value}:{___MaxRange.BaseValue}, Velocity: {____pullVelocity.Value}:{____pullVelocity.BaseValue}");
 
             foreach (CarryablesSocket socket in __instance._carryablesSocketProvider.Sockets)
