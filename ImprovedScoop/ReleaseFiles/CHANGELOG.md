@@ -1,3 +1,6 @@
+## 1.1.6
+- Updated for Void Crew 1.2.0
+
 ## 0.1.5
 - Updated for Void Crew 1.1.0
 
